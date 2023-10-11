@@ -5,21 +5,33 @@
 int main()
 {
     int nl, nc, np;
+    int t1, t2, t3;
+    //int r, g, b, a = 1.1;
+    t1 = 1, t2 = 1, t3 = 1;
 
     std::cout << "Iniciado.";
 
     std::cout << std::endl << "Quantidade de linhas: ";
-    std::cin >> nl;
+    //std::cin >> nl;
+    nl = 50;
     std::cout << std::endl << "Quantidade de colunas: ";
-    std::cin >> nc;
+    //std::cin >> nc;
+    nc = 50;
     std::cout << std::endl << "Quantidade de planos: ";
-    std::cin >> np;
+    //std::cin >> np;
+    np = 50;
 
     Sculptor *s = new Sculptor(nl, nc, np);
 
-    s->writeOFF("output.txt");
+    s->setColor(0.9, 0.0, 0.0, 0.9);
+    s->putBox(0, t1, 0, t2, 0, t3);
+    s->setColor(0.0, 0, 1, 0.9);
+    s->putBox(0, t1+t1, t2, t2+t2, t3, t3+t3);
 
-    delete s;
+
+    s->writeOFF("outputbox.txt");
+    s->writeOFF("outputbox.off");
+
 
     return 0;
 }
