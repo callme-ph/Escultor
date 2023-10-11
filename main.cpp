@@ -23,10 +23,12 @@ int main()
 
     Sculptor *s = new Sculptor(nl, nc, np);
 
-    s->setColor(0.9, 0.0, 0.0, 0.9);
+
     s->putBox(0, t1, 0, t2, 0, t3);
-    s->setColor(0.0, 0, 1, 0.9);
-    s->putBox(0, t1+t1, t2, t2+t2, t3, t3+t3);
+    s->setColor(0.0, 0, 1, 1);
+    s->putBox(t1, t1*2, t2, t2*2, t3, 2*t3);
+    s->setColor(0.0, 1, 0, 1);
+
 
 
     s->writeOFF("outputbox.txt");

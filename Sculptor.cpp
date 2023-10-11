@@ -162,10 +162,11 @@ void Sculptor::setColor(float r, float g, float b, float a){
     for (int xi = 0; xi < nx; xi++) {
       for (int yi = 0; yi < ny; yi++) {
         for (int zi = 0; zi < nz; zi++) {
-            if( v[xi][yi][zi].show && ( ((v[xi][yi][zi].r) == 0.0) && ((v[xi][yi][zi].g) == 0.0) && ((v[xi][yi][zi].b) == 0.0))){
+            if( v[xi][yi][zi].show ){
                 v[xi][yi][zi].r = r;
                 v[xi][yi][zi].g = g;
                 v[xi][yi][zi].b = b;
+                v[xi][yi][zi].a = a;
             }
         }
       }
