@@ -50,6 +50,8 @@ void Sculptor::writeOFF(const char* filename)
     std::ofstream file(filename);
     std::cout.precision(2);
     std::cout.setf(std::ios::fixed);
+    // file << setprecision(1) << fixed;
+    // file << std::fixed << std::setprecision(1);
 
 
     if (!(file.is_open()))
@@ -62,10 +64,10 @@ void Sculptor::writeOFF(const char* filename)
 
     file << "OFF" << std::endl;
 
-    int n_v = 0; /* número de vértices */
-    int n_f = 0; /* número de faces */
-    int ni = 0; /* iteração atual */
-    float r, g, b, a; /* tom RGB e transparência */
+    int n_v = 0; /* nÃºmero de vÃ©rtices */
+    int n_f = 0; /* nÃºmero de faces */
+    int ni = 0; /* iteraÃ§Ã£o atual */
+    float r, g, b, a; /* tom RGB e transparÃªncia */
 
     for (int xi = 0; xi < nx; xi++) {
         for (int yi = 0; yi < ny; yi++) {
