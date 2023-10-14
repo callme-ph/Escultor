@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <cmath>
 
 using std::fixed;
 using std::setprecision;
@@ -162,7 +163,7 @@ void Sculptor::setColor(float r, float g, float b, float a){
     for (int xi = 0; xi < nx; xi++) {
       for (int yi = 0; yi < ny; yi++) {
         for (int zi = 0; zi < nz; zi++) {
-            if( v[xi][yi][zi].show ){
+            if( (v[xi][yi][zi].show) && ((v[xi][yi][zi].r == 0) && (v[xi][yi][zi].g == 0) && (v[xi][yi][zi].b == 0)) ){
                 v[xi][yi][zi].r = r;
                 v[xi][yi][zi].g = g;
                 v[xi][yi][zi].b = b;
@@ -173,5 +174,61 @@ void Sculptor::setColor(float r, float g, float b, float a){
     }
 
     std::cout << "r, g, b, a: " << r << " " << g << " " << b << " " << a << std::endl;
+
+}
+
+void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1){
+
+    for(int i = x0; i < x1; i++){
+        for(int j = y0; j < y1; j++){
+            for(int k = z0; k < z1; k++){
+                v[i][j][k].show = false;
+            }
+        }
+    }
+
+}
+
+void Sculptor::putVoxel(int x, int y, int z){
+    v[x][y][z].show = true;
+}
+
+void Sculptor::cutVoxel(int x, int y, int z){
+    v[x][y][z].show = false;
+}
+
+void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius){
+
+    /* v[xcenter][ycenter][zcenter] = O ponto do centro da esfera.
+        Pra saber os pontos que estão dentro do raio, temos que fazer
+        sqrt((xi - xcenter)^2 + (yi - ycenter)^2 + (zi - zcenter)^2) = radius
+    */
+
+    // B
+    for (int xi = 0; xi < nx; xi++) {
+      for (int yi = 0; yi < ny; yi++) {
+        for (int zi = 0; zi < nz; zi++) {
+            if( sqrt(pow((xi - xcenter), 2) + pow((yi - ycenter), 2) + pow((zi - zcenter), 2)) <= radius ){
+                v[xi][yi][zi].show = true;
+            }
+        }
+      }
+    }
+
+
+}
+
+void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius){
+
+    for (int xi = 0; xi < nx; xi++) {
+      for (int yi = 0; yi < ny; yi++) {
+        for (int zi = 0; zi < nz; zi++) {
+            if( sqrt(pow((xi - xcenter), 2) + pow((yi - ycenter), 2) + pow((zi - zcenter), 2)) <= radius ){
+                v[xi][yi][zi].show = false;
+            }
+        }
+      }
+    }
+
 
 }
