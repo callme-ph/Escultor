@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Sculptor.h"
+#include "sculptor.h"
 #include <fstream>
 
 int main()
@@ -23,17 +23,25 @@ int main()
 
     Sculptor *s = new Sculptor(nl, nc, np);
 
-    // PUT BOX EST� FUNCIONANDO
-
-    //CUTBOX EST� FUNCIONANDO
-
+    // Construtor Sculptor está funcionando
+    // Destrutor Sculptor está funcionando
+    // WriteOFF está funcionando
+    // PUTBOX ESTÁ FUNCIONANDO
+    // CUTBOX ESTÁ FUNCIONANDO
+    // PUTSPHERE ESTÁ FUNCIONANDO
+    // CUTSPHERE ESTÁ FUNCIONANDO
+    // PUTVOXEL ESTÁ FUNCINANDO
+    // CUTVOXEL ESTÁ FUNCIONANDO
+    // SETCOLOR ESTÁFUNCIONANDO
+  
+  
     // CANECA
 
     // Montando o corpo da caneca.
     s->putBox(0, t1, 0, t2, 0, t3);
     s->cutBox(1, t1-1, 1, t2-1, 1, t3);
 
-    //Montando a asa da caneca.
+    // Montando a asa da caneca.
     s->putBox(t1, t1+4, t2-7, t2-5, t3-4, t3-3);
 
     s->putVoxel(t1+4, t2-6, t3-5);
@@ -48,7 +56,7 @@ int main()
 
     s->putBox(t1, t1+4, t2-7, t2-5, t3-16, t3-15);
 
-    // Retirando a borda da caneca.
+    // Retirando as bordas da caneca.
     s->cutBox(t1-1, t1, t2-1, t2, 0, t3);
     s->cutBox(0, 1, t2-1, t2, 0, t3);
     s->cutBox(0, 1, 0, 1, 0, t3);
@@ -60,19 +68,15 @@ int main()
     s->cutBox(t1-1, t1, 0, t2, 0, 1);
     s->cutBox(0, t1, 0, 1, 0, 1);
 
-
+    // Cor da caneca
     s->setColor(1.0, 1, 1, 1);
 
-
+    // Parte interna da caneca.
     s->putBox(1, t1-1, 1, t2-1, 1, t3-5);
-    s->setColor(0.4, 0.2, 0.1, 1);
+    s->setColor(0.4, 0.2, 0.1, 1); // Cor do cafézinho
 
 
-
-    // TESTANDO PUTSPHERE
-    // Funcionou
-
-    // Fuma�a usando esferas.
+    // Fumaça usando esferas.
     s->putSphere(23, 20, 35, 2);
     s->putSphere(20, 10, 35, 2);
     s->putSphere(13, 10, 32, 2);
@@ -80,16 +84,16 @@ int main()
     s->putSphere(11, 10, 25, 2);
     s->putSphere(8, 05, 23, 2);
 
+    // Cor das esferas de fumaça
+    s->setColor(0.5, 0.5, 0.5, 0.1);
 
-     s->setColor(0.5, 0.5, 0.5, 0.1);
-     //s->putSphere(25, 25, 25, 10);
-     //s->setColor(1, 0, 1, 0.8);
+    // Fluxo de escrita para o arquivo OFF.
+    // Arquivo txt para visualização do que foi escrito.
+    s->writeOFF("caneca.txt");
+    s->writeOFF("caneca.off");
 
-
-
-    s->writeOFF("outputbox.txt");
-    s->writeOFF("outputbox.off");
-
+    // Destrutor.
+    s->~Sculptor();
 
     return 0;
 }

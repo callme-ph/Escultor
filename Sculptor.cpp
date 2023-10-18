@@ -1,4 +1,4 @@
-#include "Sculptor.h"
+#include "sculptor.h"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -6,6 +6,7 @@
 
 using std::fixed;
 using std::setprecision;
+
 
 Sculptor::Sculptor(int _nx, int _ny, int _nz)
 {
@@ -30,12 +31,10 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz)
           v[xi][yi][zi].b = 0.0;
           v[xi][yi][zi].g = 0.0;
           v[xi][yi][zi].a = 1.0;
-          //std::cout << v[xi][yi][zi].show << " ";
         }
-        //std::cout << std::endl;
       }
     }
-    std::cout << "Definicao da caracteristica show dentro do contrutor completa." << std::endl;
+    std::cout << "Definicao da caracteristica show dentro do construtor completa." << std::endl;
 
 }
 
@@ -44,6 +43,8 @@ Sculptor::~Sculptor()
   delete[] v[0][0];
   delete[] v[0];
   delete[] v;
+  std::cerr << "Destrutor";
+  //std::cout << "Destrutor";
 }
 
 void Sculptor::writeOFF(const char* filename)
@@ -68,7 +69,7 @@ void Sculptor::writeOFF(const char* filename)
     int n_v = 0; /* número de vértices */
     int n_f = 0; /* número de faces */
     int ni = 0; /* iteração atual */
-    float r, g, b, a; /* tom RGB e transparência */
+    float r, g, b, a; /* valores de RGB e transparência */
 
     for (int xi = 0; xi < nx; xi++) {
         for (int yi = 0; yi < ny; yi++) {
@@ -136,25 +137,12 @@ void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1){
     for(int i = x0; i < x1; i++){
         for(int j = y0; j < y1; j++){
             for(int k = z0; k < z1; k++){
-                //std::cout << "x1: " << i << " y1: " << j << " z1: " << k << std::endl;
                 v[i][j][k].show = true;
-                /*v[i][j][k].r = (float)Sculptor::r;
-                v[i][j][k].b = (float)Sculptor::b;
-                v[i][j][k].g = (float)Sculptor::g;
-                v[i][j][k].a = (float)Sculptor::a;*/
+
 
             }
         }
     }
-
-   /* for (int xi = 0; xi < nx; xi++) {
-      for (int yi = 0; yi < ny; yi++) {
-        for (int zi = 0; zi < nz; zi++) {
-          std::cout << v[xi][yi][zi].show << " ";
-        }
-        std::cout << std::endl;
-      }
-    }*/
 
 }
 
@@ -199,12 +187,6 @@ void Sculptor::cutVoxel(int x, int y, int z){
 
 void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius){
 
-    /* v[xcenter][ycenter][zcenter] = O ponto do centro da esfera.
-        Pra saber os pontos que estão dentro do raio, temos que fazer
-        sqrt((xi - xcenter)^2 + (yi - ycenter)^2 + (zi - zcenter)^2) = radius
-    */
-
-    // B
     for (int xi = 0; xi < nx; xi++) {
       for (int yi = 0; yi < ny; yi++) {
         for (int zi = 0; zi < nz; zi++) {
